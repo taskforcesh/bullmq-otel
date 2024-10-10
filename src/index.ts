@@ -1,1 +1,1 @@
-export * from './otel';
+export * from './bullMQOtel';
