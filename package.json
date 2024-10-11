@@ -27,9 +27,7 @@
   "homepage": "https://github.com/taskforcesh/bullmq-otel#readme",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "bullmq": "^5.12.12",
-    "typedoc": "^0.26.6",
-    "typescript": "^5.5.4"
+    "bullmq": "^5.12.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
@@ -39,7 +37,9 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^10.1.7",
     "@semantic-release/npm": "^12.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.1"
+    "@semantic-release/release-notes-generator": "^14.0.1",
+    "typedoc": "^0.26.6",
+    "typescript": "^5.5.4"
   },
   "config": {
     "commitizen": {
