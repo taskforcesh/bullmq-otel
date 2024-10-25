@@ -2,9 +2,12 @@
   "name": "bullmq-otel",
   "version": "1.0.0",
   "description": "OpenTelemetry add-on for BullMQ",
-  "main": "index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "source": "./src/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc -p tsconfig-cjs.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build",
     "semantic-release": "semantic-release"
@@ -26,6 +29,10 @@
   },
   "homepage": "https://github.com/taskforcesh/bullmq-otel#readme",
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "bullmq": "^5.12.12"
+  },
+  "devDependencies": {
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
     "@semantic-release/changelog": "^6.0.3",
@@ -34,7 +41,6 @@
     "@semantic-release/github": "^10.1.7",
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.1",
-    "bullmq": "^5.12.12",
     "typedoc": "^0.26.6",
     "typescript": "^5.5.4"
   },
