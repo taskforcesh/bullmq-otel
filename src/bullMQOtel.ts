@@ -1,49 +1,98 @@
-import { TraceAPI, trace as OtelTrace, PropagationAPI, ContextAPI, context, propagation, Context as OtelContext, Span as OtelSpan } from '@opentelemetry/api';
-import { Carrier, ContextManager, Telemetry, Trace, Tracer } from 'bullmq';
+import {
+  trace,
+  Tracer as OtelTracer,
+  ContextAPI,
+  context,
+  propagation,
+  Context as OtelContext,
+  Span as OtelSpan,
+} from '@opentelemetry/api';
 
-class OTelContextManager implements ContextManager<OtelContext> {
-    private contextAPI: ContextAPI = context;
+import {
+  ContextManager,
+  Telemetry,
+  Tracer,
+  Span,
+  AttributeValue,
+  Attributes,
+  Time,
+  Exception,
+} from 'bullmq';
 
-    getMetadata(ctx: OtelContext) {
-        const metadata: Carrier = {};
-        propagation.inject(ctx, metadata);
-        return metadata;
-    }
+class BullMQOTelContextManager implements ContextManager<OtelContext> {
+  private contextAPI: ContextAPI = context;
 
-    fromMetadata(activeCtx: OtelContext, metadata: Record<string, string>) {
-        const ctx = propagation.extract(activeCtx, metadata);
-        return ctx;
-    }
+  getMetadata(ctx: OtelContext): string {
+    const metadata = {};
+    propagation.inject(ctx, metadata);
+    return JSON.stringify(metadata);
+  }
 
-    with<A extends (...args: any[]) => any>(ctx: OtelContext, fn: A): ReturnType<A> {
-        return this.contextAPI.with(ctx, fn);
-    }
+  fromMetadata(activeCtx: OtelContext, metadata: string) {
+    const metadataObj = JSON.parse(metadata);
+    const ctx = propagation.extract(activeCtx, metadataObj);
+    return ctx;
+  }
 
-    active(): OtelContext {
-        return this.contextAPI.active();
-    }
+  with<A extends (...args: any[]) => any>(
+    ctx: OtelContext,
+    fn: A,
+  ): ReturnType<A> {
+    return this.contextAPI.with(ctx, fn);
+  }
+
+  active(): OtelContext {
+    return this.contextAPI.active();
+  }
 }
 
-class OTelTrace implements Trace<OtelSpan> {
-    getTracer(name: string, version?: string): Tracer {
-        return OtelTrace.getTracer(name, version);
-    }
+class BullMQOtelTracer implements Tracer {
+  constructor(private tracer: OtelTracer) {}
 
-    setSpan(ctx: OtelContext, span: OtelSpan): OtelContext {
-        return OtelTrace.setSpan(ctx, span);
-    }
+  startSpan(
+    name: string,
+    options?: any,
+    context?: OtelContext,
+  ): Span<OtelContext> {
+    const span = this.tracer.startSpan(name, options, context);
+    return new BullMQOTelSpan(span);
+  }
+}
+
+export class BullMQOTelSpan implements Span<OtelContext> {
+  constructor(public span: OtelSpan) {}
+
+  setSpanOnContext(ctx: OtelContext): OtelContext {
+    return trace.setSpan(ctx, this.span);
+  }
+
+  setAttribute(key: string, value: AttributeValue): void {
+    this.span.setAttribute(key, value);
+  }
+
+  setAttributes(attributes: Attributes): void {
+    this.span.setAttributes(attributes);
+  }
+
+  addEvent(name: string, attributes?: Attributes, time?: Time): void {
+    this.span.addEvent(name, attributes, time);
+  }
+
+  recordException(exception: Exception, time?: Time): void {
+    this.span.recordException(exception, time);
+  }
+
+  end(): void {
+    this.span.end();
+  }
 }
 
 export class BullMQOtel implements Telemetry<OtelContext> {
-    trace: OTelTrace;
-    contextManager: OTelContextManager;
-    tracerName: string;
-    propagation: PropagationAPI;
+  tracer: BullMQOtelTracer;
+  contextManager: BullMQOTelContextManager;
 
-    constructor(tracerName: string) {
-        this.trace = new OTelTrace();
-        this.contextManager = new OTelContextManager();
-        this.tracerName = tracerName;
-        this.propagation = propagation;
-    }
-};
+  constructor(tracerName: string, version?: string) {
+    this.tracer = new BullMQOtelTracer(trace.getTracer(tracerName, version));
+    this.contextManager = new BullMQOTelContextManager();
+  }
+}
