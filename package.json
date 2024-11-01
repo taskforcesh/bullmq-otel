@@ -30,7 +30,7 @@
   "homepage": "https://github.com/taskforcesh/bullmq-otel#readme",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "bullmq": "^5.12.12"
+    "bullmq": "^5.22.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
