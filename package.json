@@ -6,6 +6,9 @@
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "source": "./src/index.ts",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "build": "tsc && tsc -p tsconfig-cjs.json",
     "dry-run": "npm publish --dry-run",
