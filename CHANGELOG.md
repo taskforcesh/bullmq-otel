@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/taskforcesh/bullmq-otel/compare/v1.0.0...v1.0.1) (2024-11-08)
+
+
+### Bug Fixes
+
+* **dist:** include dist as part of files in package.json ([#4](https://github.com/taskforcesh/bullmq-otel/issues/4)) ref [#3](https://github.com/taskforcesh/bullmq-otel/issues/3) ([7f5aa34](https://github.com/taskforcesh/bullmq-otel/commit/7f5aa349345835e0d32474e6ba7b836845a66247))
+
 # 1.0.0 (2024-11-01)
 
 
