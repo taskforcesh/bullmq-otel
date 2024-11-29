@@ -17,6 +17,7 @@ import {
   Attributes,
   Time,
   Exception,
+  TelemetryOptions,
 } from 'bullmq';
 
 class BullMQOTelContextManager implements ContextManager<OtelContext> {
@@ -90,9 +91,11 @@ export class BullMQOTelSpan implements Span<OtelContext> {
 export class BullMQOtel implements Telemetry<OtelContext> {
   tracer: BullMQOtelTracer;
   contextManager: BullMQOTelContextManager;
+  options: TelemetryOptions;
 
-  constructor(tracerName: string, version?: string) {
+  constructor(tracerName: string, version?: string, options?: TelemetryOptions) {
     this.tracer = new BullMQOtelTracer(trace.getTracer(tracerName, version));
     this.contextManager = new BullMQOTelContextManager();
+    this.options = options;
   }
 }
