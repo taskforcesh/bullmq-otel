@@ -6,6 +6,8 @@ import {
   propagation,
   Context as OtelContext,
   Span as OtelSpan,
+  metrics as otelMetrics,
+  Meter as OtelMeter,
 } from '@opentelemetry/api';
 
 import {
@@ -17,6 +19,7 @@ import {
   Attributes,
   Time,
   Exception,
+  Configuration
 } from 'bullmq';
 
 class BullMQOTelContextManager implements ContextManager<OtelContext> {
@@ -91,8 +94,18 @@ export class BullMQOtel implements Telemetry<OtelContext> {
   tracer: BullMQOtelTracer;
   contextManager: BullMQOTelContextManager;
 
-  constructor(tracerName: string, version?: string) {
-    this.tracer = new BullMQOtelTracer(trace.getTracer(tracerName, version));
-    this.contextManager = new BullMQOTelContextManager();
+  meter: OtelMeter;
+
+  constructor(telemetry: Configuration) {
+    const {traces, metrics} = telemetry;
+
+    if (traces) {
+      this.tracer = new BullMQOtelTracer(trace.getTracer(traces.name, traces.version));
+      this.contextManager = new BullMQOTelContextManager();
+    }
+
+    if (metrics) {
+      this.meter = otelMetrics.getMeter(metrics.name, metrics.version);
+    }
   }
 }
