@@ -91,7 +91,7 @@ export class BullMQOtel implements Telemetry<OtelContext> {
   tracer: BullMQOtelTracer;
   contextManager: BullMQOTelContextManager;
 
-  constructor(tracerName: string, version?: string) {
+  constructor(tracerName = 'bullmq', version?: string) {
     this.tracer = new BullMQOtelTracer(trace.getTracer(tracerName, version));
     this.contextManager = new BullMQOTelContextManager();
   }
