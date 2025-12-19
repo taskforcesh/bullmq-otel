@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.0.1...v1.1.0) (2025-12-19)
+
+
+### Features
+
+* **api:** make tracerName optional with default 'bullmq' ([2f40397](https://github.com/taskforcesh/bullmq-otel/commit/2f40397203d6f541656f1ffc3a48090c9bc2d99e))
+
 ## [1.0.1](https://github.com/taskforcesh/bullmq-otel/compare/v1.0.0...v1.0.1) (2024-11-08)
 
 
