@@ -34,10 +34,11 @@
   ],
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "bullmq": "^5.22.0"
+    "bullmq": "^5.22.0",
+    "tslib": "^2.8.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.4.1",
+    "@commitlint/cli": "20.3.1",
     "@commitlint/config-conventional": "^19.4.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^9.0.2",
@@ -45,7 +46,6 @@
     "@semantic-release/github": "^8.1.0",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
-    "tslib": "^2.8.0",
     "typedoc": "^0.26.6",
     "typescript": "^5.5.4"
   },
@@ -61,17 +61,7 @@
   },
   "release": {
     "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "releaseRules": [
-            {
-              "message": "*\\[python\\]*",
-              "release": false
-            }
-          ]
-        }
-      ],
+      "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       [
         "@semantic-release/changelog",
