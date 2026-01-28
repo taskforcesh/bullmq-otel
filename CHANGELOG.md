@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/taskforcesh/bullmq-otel/compare/v1.1.0...v1.1.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **deps:** move tslib to dependencies ([#11](https://github.com/taskforcesh/bullmq-otel/issues/11)) ([8524d66](https://github.com/taskforcesh/bullmq-otel/commit/8524d662faf522ec880a27ca526aeb2e02c591b7))
+
 # [1.1.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.0.1...v1.1.0) (2025-12-19)
 
 
