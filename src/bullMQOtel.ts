@@ -13,6 +13,8 @@ import {
   MetricOptions as OtelMetricOptions,
 } from '@opentelemetry/api';
 import {
+  AttributeValue,
+  Attributes,
   Meter,
   Counter,
   Histogram
@@ -22,8 +24,6 @@ import {
   Telemetry,
   Tracer,
   Span,
-  AttributeValue,
-  Attributes,
   Time,
   Exception,
 } from 'bullmq';
