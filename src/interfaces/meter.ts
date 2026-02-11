@@ -1,3 +1,7 @@
+import {
+  MetricOptions as OtelMetricOptions,
+} from '@opentelemetry/api';
+
 /**
  * Meter interface
  *
@@ -11,7 +15,7 @@ export interface Meter {
    * @param options - optional configuration for the counter
    * @returns a Counter instance
    */
-  createCounter(name: string, options?: MetricOptions): Counter;
+  createCounter(name: string, options?: OtelMetricOptions): Counter;
 
   /**
    * Creates a new Histogram metric instrument.
@@ -20,7 +24,7 @@ export interface Meter {
    * @param options - optional configuration for the histogram
    * @returns a Histogram instance
    */
-  createHistogram(name: string, options?: MetricOptions): Histogram;
+  createHistogram(name: string, options?: OtelMetricOptions): Histogram;
 }
 
 /**
