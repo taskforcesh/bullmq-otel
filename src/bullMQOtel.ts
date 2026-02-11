@@ -193,7 +193,7 @@ export class BullMQOtel implements Telemetry<OtelContext> {
    *   enableMetrics: true,
    * });
    */
-  constructor(tracerNameOrOptions?: string | BullMQOtelOptions, version?: string) {
+  constructor(tracerNameOrOptions?: string | BullMQOtelOptions, version?: string) { // TODO: keep only BullMQOtelOptions in the future as object
     let options: BullMQOtelOptions;
 
     if (typeof tracerNameOrOptions === 'string') {
@@ -216,6 +216,7 @@ export class BullMQOtel implements Telemetry<OtelContext> {
         tracerName: 'bullmq',
         meterName: 'bullmq',
         enableMetrics: false,
+        version,
         ...tracerNameOrOptions,
       };
     }
