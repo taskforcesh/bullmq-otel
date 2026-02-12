@@ -12,6 +12,8 @@ jobs:
     permissions:
       id-token: write # Required for OIDC
       contents: write # for release publishing
+      pull-requests: write
+      issues: write # additional permission that might be needed
 
     name: Release
     env:
