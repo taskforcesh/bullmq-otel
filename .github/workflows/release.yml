@@ -10,6 +10,7 @@ env:
 jobs:
   release:
     permissions:
+      id-token: write # Required for OIDC
       contents: write # for release publishing
 
     name: Release
