@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.1.1...v1.2.0) (2026-02-13)
+
+
+### Features
+
+* **metrics:** support metric options ([#12](https://github.com/taskforcesh/bullmq-otel/issues/12)) ([1d126f3](https://github.com/taskforcesh/bullmq-otel/commit/1d126f320f05f5f3f90cb2363bbb9a3e30b0336e))
+
 ## [1.1.1](https://github.com/taskforcesh/bullmq-otel/compare/v1.1.0...v1.1.1) (2026-01-28)
 
 
