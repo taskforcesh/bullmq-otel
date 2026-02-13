@@ -11,7 +11,8 @@
     "dry-run": "npm publish --dry-run",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "semantic-release:debug": "semantic-release --no-ci --dry-run --debug"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "@semantic-release/npm": "13.1.4",
     "@semantic-release/release-notes-generator": "14.1.0",
     "@types/node": "18.19.130",
+    "semantic-release": "25.0.3",
     "typedoc": "0.28.16",
     "typescript": "5.9.3"
   },
