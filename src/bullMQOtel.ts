@@ -19,7 +19,7 @@ import {
   Meter,
   Counter,
   Histogram,
-  Gauge
+  Gauge,
 } from './interfaces';
 import {
   ContextManager,
