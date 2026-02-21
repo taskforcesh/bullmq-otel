@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.2.0...v1.3.0) (2026-02-21)
+
+
+### Features
+
+* **metrics:** support gauge metric creation ([#20](https://github.com/taskforcesh/bullmq-otel/issues/20)) ([d0d38c3](https://github.com/taskforcesh/bullmq-otel/commit/d0d38c319be83da8d4480de5e7c724baec1831d2))
+
 # [1.2.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.1.1...v1.2.0) (2026-02-13)
 
 
