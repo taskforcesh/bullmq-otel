@@ -10,6 +10,7 @@ import {
   Meter as OtelMeter,
   Counter as OtelCounter,
   Histogram as OtelHistogram,
+  Gauge as OtelGauge,
   MetricOptions as OtelMetricOptions,
 } from '@opentelemetry/api';
 import {
@@ -17,7 +18,8 @@ import {
   Attributes,
   Meter,
   Counter,
-  Histogram
+  Histogram,
+  Gauge,
 } from './interfaces';
 import {
   ContextManager,
@@ -112,9 +114,18 @@ class BullMQOTelHistogram implements Histogram {
   }
 }
 
+class BullMQOTelGauge implements Gauge {
+  constructor(private gauge: OtelGauge) {}
+
+  record(value: number, attributes?: Attributes): void {
+    this.gauge.record(value, attributes);
+  }
+}
+
 class BullMQOTelMeter implements Meter {
   private counters: Map<string, BullMQOTelCounter> = new Map();
   private histograms: Map<string, BullMQOTelHistogram> = new Map();
+  private gauges: Map<string, BullMQOTelGauge> = new Map();
 
   constructor(private meter: OtelMeter) {}
 
@@ -138,6 +149,17 @@ class BullMQOTelMeter implements Meter {
       this.histograms.set(name, histogram);
     }
     return histogram;
+  }
+
+  createGauge(name: string, options?: OtelMetricOptions): Gauge {
+    // Cache gauges to avoid creating duplicates
+    let gauge = this.gauges.get(name);
+    if (!gauge) {
+      const otelGauge = this.meter.createGauge(name, options);
+      gauge = new BullMQOTelGauge(otelGauge);
+      this.gauges.set(name, gauge);
+    }
+    return gauge;
   }
 }
 

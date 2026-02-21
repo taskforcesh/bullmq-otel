@@ -25,6 +25,19 @@ export interface Meter {
    * @returns a Histogram instance
    */
   createHistogram(name: string, options?: OtelMetricOptions): Histogram;
+
+  /**
+   * Creates a new Gauge metric instrument.
+   *
+   * A gauge is a metric that represents a single numerical value that can
+   * arbitrarily go up and down. Gauges are typically used for measured values
+   * like current memory usage or queue sizes.
+   *
+   * @param name - the name of the gauge
+   * @param options - optional configuration for the gauge
+   * @returns a Gauge instance
+   */
+  createGauge(name: string, options?: OtelMetricOptions): Gauge;
 }
 
 /**
@@ -68,6 +81,22 @@ export interface Counter {
 export interface Histogram {
   /**
    * Records a value in the histogram.
+   *
+   * @param value - the value to record
+   * @param attributes - optional attributes to associate with this measurement
+   */
+  record(value: number, attributes?: Attributes): void;
+}
+
+/**
+ * Gauge metric interface
+ *
+ * A gauge is a synchronous instrument which can be used to record
+ * non-additive value(s) (e.g. the current queue size) when changes occur.
+ */
+export interface Gauge {
+  /**
+   * Records a value for the gauge.
    *
    * @param value - the value to record
    * @param attributes - optional attributes to associate with this measurement
