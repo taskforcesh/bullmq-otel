@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/taskforcesh/bullmq-otel/compare/v1.3.0...v1.3.1) (2026-05-04)
+
+
+### Bug Fixes
+
+* **deps:** bump bullmq minimum to ^5.76.2 to fix UUID security vulnerability ([#22](https://github.com/taskforcesh/bullmq-otel/issues/22)) ([60eb510](https://github.com/taskforcesh/bullmq-otel/commit/60eb510e4527e97c7203aa802e97ad030bfdcc8b))
+
 # [1.3.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.2.0...v1.3.0) (2026-02-21)
 
 
