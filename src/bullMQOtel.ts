@@ -198,8 +198,8 @@ export class BullMQOtel implements Telemetry<OtelContext> {
   /**
    * Creates a new BullMQOtel telemetry instance.
    *
-   * @param options - configuration options object
-   * @param version - Version string (only used when first parameter is a string)
+   * @param tracerOptions - Configuration options object
+   * @param version - Optional version string (overridden by tracerOptions.version when provided)
    *
    * @example
    * // With metrics enabled
