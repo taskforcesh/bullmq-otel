@@ -198,13 +198,8 @@ export class BullMQOtel implements Telemetry<OtelContext> {
   /**
    * Creates a new BullMQOtel telemetry instance.
    *
-   * @param tracerNameOrOptions - Either a tracer name string (for backward compatibility)
-   *                              or a configuration options object
+   * @param options - configuration options object
    * @param version - Version string (only used when first parameter is a string)
-   *
-   * @example
-   * // Simple usage (backward compatible)
-   * const telemetry = new BullMQOtel('my-app', '1.0.0');
    *
    * @example
    * // With metrics enabled
@@ -215,17 +210,10 @@ export class BullMQOtel implements Telemetry<OtelContext> {
    *   enableMetrics: true,
    * });
    */
-  constructor(tracerNameOrOptions?: string | BullMQOtelOptions, version?: string) { // TODO: keep only BullMQOtelOptions in the future as object
+  constructor(tracerOptions?: BullMQOtelOptions, version?: string) {
     let options: BullMQOtelOptions;
 
-    if (typeof tracerNameOrOptions === 'string') {
-      // Backward compatible: (tracerName, version?)
-      options = {
-        tracerName: tracerNameOrOptions,
-        version,
-        enableMetrics: false,
-      };
-    } else if (tracerNameOrOptions === undefined) {
+    if (tracerOptions === undefined) {
       // No arguments provided
       options = {
         tracerName: 'bullmq',
@@ -239,7 +227,7 @@ export class BullMQOtel implements Telemetry<OtelContext> {
         meterName: 'bullmq',
         enableMetrics: false,
         version,
-        ...tracerNameOrOptions,
+        ...tracerOptions,
       };
     }
 
