@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.3.1...v2.0.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* **constructor:** only allow tracer options as first parameter ([#23](https://github.com/taskforcesh/bullmq-otel/issues/23)) ([f3f7e21](https://github.com/taskforcesh/bullmq-otel/commit/f3f7e21cd346554c44a7b2f89ca0db439b3208df))
+
+
+### BREAKING CHANGES
+
+* **constructor:** drop tracerName as first parameter
+
 ## [1.3.1](https://github.com/taskforcesh/bullmq-otel/compare/v1.3.0...v1.3.1) (2026-05-04)
 
 
