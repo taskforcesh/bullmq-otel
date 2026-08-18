@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/taskforcesh/bullmq-otel/compare/v2.0.0...v2.0.1) (2026-08-18)
+
+
+### Bug Fixes
+
+* **deps:** move bullmq as a per dependency ([#25](https://github.com/taskforcesh/bullmq-otel/issues/25)) ([fe66465](https://github.com/taskforcesh/bullmq-otel/commit/fe66465c048629174af1720c1e81007ca6992da5))
+
 # [2.0.0](https://github.com/taskforcesh/bullmq-otel/compare/v1.3.1...v2.0.0) (2026-07-14)
 
 
